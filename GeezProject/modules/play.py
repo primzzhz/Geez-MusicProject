@@ -156,7 +156,7 @@ async def playlist(client, message):
 def updated_stats(chat, queue, vol=100):
     if chat.id in callsmusic.pytgcalls.active_calls:
         # if chat.id in active_chats:
-        stats = "Pengaturan dari **{}**".format(chat.title)
+        stats = "Settings from **{}**".format(chat.title)
         if len(que) > 0:
             stats += "\n\n"
             stats += "Volume : {}%\n".format(vol)
@@ -676,7 +676,7 @@ async def play(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption = f"🏷 **Title:** [{title[:60]}]({url})\n⏱ **Duration:** {duration}\n💡 **Status:** Queue of `{position}`\n" \
+            caption = f"🏷 **Title:** [{title[:60]}]({url})\n⏱ **Duration:** {duration}\n💡 **Status:** Queued **{position}**\n" \
                     + f"🎼 **Request from:** {message.from_user.mention}",
                    reply_markup=keyboard)
     else:
@@ -814,7 +814,7 @@ async def ytplay(_, message: Message):
         qeue.append(appendable)
         await message.reply_photo(
             photo="final.png",
-            caption = f"🏷 **Title:** [{title[:60]}]({url})\n⏱ **Duration:** {duration}\n💡 **Status:** Queue of `{position}`\n" \
+            caption = f"🏷 **Title:** [{title[:60]}]({url})\n⏱ **Duration:** {duration}\n💡 **Status:** Queue of **{position}**\n" \
                     + f"🎼 **Request By:** {message.from_user.mention}",
                    reply_markup=keyboard,
         )
@@ -922,7 +922,7 @@ async def deezer(client: Client, message_: Message):
     try:    
         duuration= round(duration / 60)
         if duuration > DURATION_LIMIT:
-            await cb.message.edit(f"**Musik is over from** `{DURATION_LIMIT}` **menit can't playing**")
+            await cb.message.edit(f"**Musik is over from** `{DURATION_LIMIT}` **minute can't playing**")
             return
     except:
         pass    
@@ -945,7 +945,7 @@ async def deezer(client: Client, message_: Message):
         loc = file_path
         appendable = [s_name, r_by, loc]
         qeue.append(appendable)
-        await res.edit_text(f"🎼 **Song Request on Queue** `{position}`")
+        await res.edit_text(f"🎼 **Song Request on Queue** : **{position}**")
     else:
         await res.edit_text(f"🎼️ **Playing...**")
 
@@ -1047,7 +1047,7 @@ async def lol_cb(b, cb):
         await cb.message.delete()
         await b.send_photo(chat_id,
             photo="final.png",
-            caption = f"🏷 **Title:** [{title[:60]}]({url})\n⏱ **Duration:** {duration}\n💡 **Status:** Queue of `{position}`\n" \
+            caption = f"🏷 **Title:** [{title[:60]}]({url})\n⏱ **Duration:** {duration}\n💡 **Status:** Queue of **{position}**\n" \
                     + f"🎼 **Request By:** {r_by.mention}",
                    reply_markup=keyboard,
         )
