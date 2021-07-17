@@ -44,7 +44,7 @@ async def addchannel(client, message):
         await USER.join_chat(invitelink)
     except UserAlreadyParticipant:
         await message.reply_text(
-            f"<b>{user.first_name} sudah ada di obrolan Anda</b>",
+            f"<b>{user.first_name} Allready join this Group</b>",
         )
     except Exception as e:
         print(e)
@@ -54,7 +54,7 @@ async def addchannel(client, message):
         )
         return
     await message.reply_text(
-        f"<b>{user.first_name} berhasil bergabung dengan obrolan Anda</b>",
+        f"<b>{user.first_name} Join Seccsesfully</b>",
     )
 
 
@@ -99,14 +99,14 @@ async def addcchannel(client, message):
       conid = conchat.linked_chat.id
       chid = conid
     except:
-      await message.reply("Apakah obrolan terhubung?")
+      await message.reply("Are your connected?")
       return    
     chat_id = chid
     try:
         invitelink = await client.export_chat_invite_link(chid)
     except:
         await message.reply_text(
-            "<b>Tambahkan saya sebagai admin saluran Anda terlebih dahulu</b>",
+            "<b>Add me Admin first</b>",
         )
         return
 
