@@ -18,3 +18,4 @@ psutil
 wget
 git+https://github.com/pytgcalls/pytgcalls
 python-ffmpeg
+ffmpeg
