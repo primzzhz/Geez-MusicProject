@@ -14,7 +14,7 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
+import json
 import os
 from os import path
 from typing import Callable
@@ -29,6 +29,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import UserAlreadyParticipant
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from Python_ARQ import ARQ
+from pyrogram.types import Voice
 from youtube_search import YoutubeSearch
 
 from GeezProject.config import ARQ_API_KEY
