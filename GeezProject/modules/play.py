@@ -134,6 +134,8 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 @Client.on_message(filters.command("playlist") & filters.group & ~filters.edited)
 async def playlist(client, message):
     global que
+    if message.chat.id in DISABLED_GROUPS:
+        return  
     queue = que.get(message.chat.id)
     if not queue:
         await message.reply_text("Player is idle")
@@ -199,6 +201,8 @@ def r_ply(type_):
 
 @Client.on_message(filters.command("current") & filters.group & ~filters.edited)
 async def ee(client, message):
+    if message.chat.id in DISABLED_GROUPS:
+        return  
     queue = que.get(message.chat.id)
     stats = updated_stats(message.chat, queue)
     if stats:
@@ -210,6 +214,8 @@ async def ee(client, message):
 @Client.on_message(filters.command("player") & filters.group & ~filters.edited)
 @authorized_users_only
 async def settings(client, message):
+    if message.chat.id in DISABLED_GROUPS:
+        return  
     playing = None
     chat_id = get_chat_id(message.chat)
     if chat_id in callsmusic.pytgcalls.active_calls:
@@ -444,6 +450,8 @@ async def m_cb(b, cb):
 @Client.on_message(command("play") & other_filters)
 async def play(_, message: Message):
     global que
+    if message.chat.id in DISABLED_GROUPS:
+        return  
     lel = await message.reply("🔄 **Processing**")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
@@ -680,6 +688,8 @@ async def play(_, message: Message):
 @Client.on_message(filters.command("dplay") & filters.group & ~filters.edited)
 async def deezer(client: Client, message_: Message):
     global que
+    if message.chat.id in DISABLED_GROUPS:
+        return  
     lel = await message_.reply("🔄 **Processing**")
     administrators = await get_administrators(message_.chat)
     chid = message_.chat.id
@@ -808,6 +818,8 @@ async def deezer(client: Client, message_: Message):
 @Client.on_message(filters.command("splay") & filters.group & ~filters.edited)
 async def jiosaavn(client: Client, message_: Message):
     global que
+    if message.chat.id in DISABLED_GROUPS:
+        return  
     lel = await message_.reply("🔄 **Processing**")
     administrators = await get_administrators(message_.chat)
     chid = message_.chat.id
