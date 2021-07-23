@@ -255,6 +255,48 @@ async def p_cb(b, cb):
                 msg += f"\n- {name}"
                 msg += f"\n- Req by {usr}\n"
         await cb.message.edit(msg)
+        
+@Client.on_message(
+    filters.command("musicplayer") & ~filters.edited & ~filters.bot & ~filters.private
+)
+@authorized_users_only
+async def hfmm(_, message):
+    global DISABLED_GROUPS
+    try:
+        user_id = message.from_user.id
+    except:
+        return
+    if len(message.command) != 2:
+        await message.reply_text(
+            "**i just know** `/musicplayer on` **dan** `/musicplayer off`"
+        )
+        return
+    status = message.text.split(None, 1)[1]
+    message.chat.id
+    if status == "ON" or status == "on" or status == "On":
+        lel = await message.reply("`Processing...`")
+        if not message.chat.id in DISABLED_GROUPS:
+            await lel.edit("**Music Player has Actived in this Group**")
+            return
+        DISABLED_GROUPS.remove(message.chat.id)
+        await lel.edit(
+            f"**Music Player has Actived in this Group** {message.chat.id}"
+        )
+
+    elif status == "OFF" or status == "off" or status == "Off":
+        lel = await message.reply("`Processing...`")
+        
+        if message.chat.id in DISABLED_GROUPS:
+            await lel.edit("**Music Player has Nonactived in this Group**")
+            return
+        DISABLED_GROUPS.append(message.chat.id)
+        await lel.edit(
+            f"**Music Player has Nonactived in this Group** {message.chat.id}"
+        )
+    else:
+        await message.reply_text(
+            "**i just know** `/musicplayer on` **dan** `/musicplayer off`"
+        )    
 
 
 @Client.on_callback_query(
