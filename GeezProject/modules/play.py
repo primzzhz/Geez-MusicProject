@@ -447,12 +447,12 @@ async def m_cb(b, cb):
             await cb.answer("Chat is not connected!", show_alert=True)
 
 
-@Client.on_message(command("play") & other_filters)
+@Client.on_message(command("p") & other_filters)
 async def play(_, message: Message):
     global que
     if message.chat.id in DISABLED_GROUPS:
         return  
-    lel = await message.reply("🔄 **Processing**")
+    lel = await message.reply("🔄 **prosess**")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
 
@@ -508,7 +508,7 @@ async def play(_, message: Message):
     message.from_user.id
     message.from_user.first_name
     text_links = None
-    await lel.edit("🔎 **Finding**")
+    await lel.edit("🔎 **Sabar suu**")
     message.from_user.id
     if message.reply_to_message:
         entities = []
@@ -561,7 +561,7 @@ async def play(_, message: Message):
         )
     elif urls:
         query = toxt
-        await lel.edit("🎵 **Processing**")
+        await lel.edit("🎵 **Prosesss**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -605,7 +605,7 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += " " + str(i)
         print(query)
-        await lel.edit("🎵 **Processing**")
+        await lel.edit("🎵 **Prosessss**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
